@@ -18,16 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <Button
-        android:id="@+id/button_load_games"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_load_games"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title"/>
-
-    <!-- NUEVO: Indicador de filtros activos -->
+    <!-- Indicador de filtros activos -->
     <TextView
         android:id="@+id/active_filters_text"
         android:layout_width="0dp"
@@ -36,11 +27,11 @@
         android:layout_marginTop="8dp"
         android:padding="12dp"
         android:background="@drawable/filter_badge_background"
-        android:text="@string/no_filters"
+        android:text="Sin filtros aplicados"
         android:textSize="13sp"
-        android:textColor="@color/textPrimaryColor"
+        android:textColor="@color/black"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/button_load_games"
+        app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

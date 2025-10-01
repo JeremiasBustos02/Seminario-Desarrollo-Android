@@ -23,6 +23,7 @@ class GameActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
     private val viewModel by viewModels<GameViewModel>()
+    private lateinit var gameAdapter: GameAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +32,7 @@ class GameActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        subscribeToUi()
+        setupRecyclerView()  // NUEVO: Configurar adapter desde el inicio
         subscribeToViewModel()
 
         binding.buttonFilter.setOnClickListener {
@@ -51,49 +52,46 @@ class GameActivity : AppCompatActivity() {
         viewModel.reloadWithFilters()
     }
 
-    private fun subscribeToUi() {
-        binding.buttonLoadGames.setOnClickListener {
-            viewModel.getAllGames(20)
-        }
+    // NUEVO: Configura el RecyclerView una sola vez
+    private fun setupRecyclerView() {
+        gameAdapter = GameAdapter(
+            games = emptyList(),
+            onGameClick = { game ->
+                Toast.makeText(this, "Game ${game.name} clicked", Toast.LENGTH_SHORT).show()
+            }
+        )
+        binding.gamesList.adapter = gameAdapter
     }
 
     private fun subscribeToViewModel() {
         // Observa el estado de carga y actualiza la UI
         viewModel.loading.onEach { loading ->
-            if (loading) {
-                binding.progressBar.visibility = View.VISIBLE
-            } else {
-                binding.progressBar.visibility = View.INVISIBLE
-            }
-            binding.buttonLoadGames.isEnabled = !loading
+            binding.progressBar.visibility = if (loading) View.VISIBLE else View.INVISIBLE
         }.launchIn(lifecycleScope)
 
-        // Observa la lista de juegos y actualiza el adaptador del RecyclerView
+        // Observa la lista de juegos y actualiza el adaptador
         viewModel.games.onEach { games ->
-            binding.gamesList.adapter = GameAdapter(
+            // MODIFICADO: Actualiza el adapter existente en lugar de crear uno nuevo
+            gameAdapter = GameAdapter(
                 games = games,
                 onGameClick = { game ->
                     Toast.makeText(this, "Game ${game.name} clicked", Toast.LENGTH_SHORT).show()
                 }
             )
+            binding.gamesList.adapter = gameAdapter
         }.launchIn(lifecycleScope)
 
-        // Observa el estado de error y actualiza la visibilidad del mensaje de error
+        // Observa el estado de error
         viewModel.error.onEach { error ->
-            if (error) {
-                binding.error.visibility = View.VISIBLE
-            } else {
-                binding.error.visibility = View.INVISIBLE
-            }
+            binding.error.visibility = if (error) View.VISIBLE else View.INVISIBLE
         }.launchIn(lifecycleScope)
 
-        // NUEVO: Observa los filtros activos y actualiza la UI
+        // Observa los filtros activos
         viewModel.activeFilters.onEach { filters ->
             updateActiveFiltersDisplay(filters)
         }.launchIn(lifecycleScope)
     }
 
-    // NUEVO: Actualiza el TextView de filtros activos
     private fun updateActiveFiltersDisplay(filters: GameFilters?) {
         if (filters == null || !viewModel.hasActiveFilters()) {
             binding.activeFiltersText.visibility = View.GONE
@@ -102,15 +100,15 @@ class GameActivity : AppCompatActivity() {
 
         val filterParts = mutableListOf<String>()
 
-        filters.platform?.let { filterParts.add("🎮 $it") }
-        filters.genre?.let { filterParts.add("📂 $it") }
-        filters.year?.let { filterParts.add("📅 $it") }
+        filters.platform?.let { filterParts.add("Plataforma: $it") }
+        filters.genre?.let { filterParts.add("Género: $it") }
+        filters.year?.let { filterParts.add("Año: $it") }
         filters.minRating?.let {
-            filterParts.add("⭐ ${String.format("%.1f", it)}+")
+            filterParts.add("Calificación: ${String.format("%.1f", it)}+")
         }
 
         if (filterParts.isNotEmpty()) {
-            binding.activeFiltersText.text = "Filtros: ${filterParts.joinToString(" • ")}"
+            binding.activeFiltersText.text = "Filtros: ${filterParts.joinToString(" | ")}"
             binding.activeFiltersText.visibility = View.VISIBLE
         } else {
             binding.activeFiltersText.visibility = View.GONE
