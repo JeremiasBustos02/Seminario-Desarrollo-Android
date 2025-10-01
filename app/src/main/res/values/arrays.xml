@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="platforms">
+        <item>Todas las plataformas</item>
+        <item>PC</item>
+        <item>PlayStation 5</item>
+        <item>PlayStation 4</item>
+        <item>Xbox Series X/S</item>
+        <item>Xbox One</item>
+        <item>Nintendo Switch</item>
+        <item>iOS</item>
+        <item>Android</item>
+    </string-array>
+
+    <string-array name="genres">
+        <item>Todos los géneros</item>
+        <item>Action</item>
+        <item>Adventure</item>
+        <item>RPG</item>
+        <item>Strategy</item>
+        <item>Shooter</item>
+        <item>Puzzle</item>
+        <item>Sports</item>
+        <item>Racing</item>
+    </string-array>
+
+    <string-array name="years">
+        <item>Todos los años</item>
+        <item>2024</item>
+        <item>2023</item>
+        <item>2022</item>
+        <item>2021</item>
+        <item>2020</item>
+    </string-array>
+</resources>

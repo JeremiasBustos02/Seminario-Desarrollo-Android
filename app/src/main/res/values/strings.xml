@@ -1,0 +1,19 @@
+<resources>
+    <!-- Game activity -->
+    <string name="app_name">Seminario</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="get_list">Get games list</string>
+    <string name="button_load_games">Load</string>
+    <string name="button_filter">Filters</string>
+    <string name="no_filters">No filters</string>
+
+    <!-- Filter activity -->
+    <string name="title_filter">Filter Options</string>
+    <string name="label_platform">Platform</string>
+    <string name="label_genre">Genre</string>
+    <string name="label_year">Year</string>
+    <string name="label_rating_min">Minimum rating</string>
+    <string name="button_apply_filter">Apply Filters</string>
+    <string name="button_clear_filter">Clear Filters</string>
+    <string name="button_back">Back</string>
+</resources>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- Imagen centrada -->
+    <ImageView
+        android:id="@+id/game_image"
+        android:layout_width="320dp"
+        android:layout_height="220dp"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="16.dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Overlay oscuro sobre la imagen -->
+    <View
+        android:id="@+id/overlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#10000000"
+        app:layout_constraintBottom_toBottomOf="@id/game_image"
+        app:layout_constraintEnd_toEndOf="@id/game_image"
+        app:layout_constraintStart_toStartOf="@id/game_image"
+        app:layout_constraintTop_toTopOf="@id/game_image" />
+
+    <!-- Nombre del juego -->
+    <TextView
+        android:id="@+id/game_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="#80000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/game_released"
+        app:layout_constraintEnd_toEndOf="@id/game_image"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/game_image"
+        tools:text="Nombre del Juego" />
+
+    <!-- Fecha de lanzamiento -->
+    <TextView
+        android:id="@+id/game_released"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="#80000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/game_image"
+        app:layout_constraintEnd_toEndOf="@id/game_image"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/game_image"
+        tools:text="Fecha: 2025" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
