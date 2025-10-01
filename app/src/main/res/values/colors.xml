@@ -2,4 +2,23 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Colores del tema claro -->
+    <color name="background_light">#F0F4F8</color>
+    <color name="surface_light">#FFFFFF</color>
+    <color name="text_primary_light">#212121</color>
+    <color name="text_secondary_light">#757575</color>
+    <color name="primary_light">#2196F3</color>
+
+    <!-- Colores del tema oscuro -->
+    <color name="background_dark">#1A1A1A</color>
+    <color name="surface_dark">#2A2A2A</color>
+    <color name="text_primary_dark">#FFFFFF</color>
+    <color name="text_secondary_dark">#B0B0B0</color>
+    <color name="primary_dark">#BB86FC</color>
+
+    <!-- Colores compartidos -->
+    <color name="accent_purple">#BB86FC</color>
+    <color name="accent_gold">#FFD700</color>
+    <color name="error_color">#CF6679</color>
 </resources>

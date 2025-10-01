@@ -1,8 +1,7 @@
 <resources>
     <!-- Game activity -->
-    <string name="app_name">Seminario</string>
+    <string name="app_name">Byte</string>
     <string name="hello_world">Hello World!</string>
-    <string name="get_list">Get games list</string>
     <string name="button_load_games">Load</string>
     <string name="button_filter">Filters</string>
     <string name="no_filters">No filters</string>
